@@ -1,0 +1,155 @@
+
+.register .form {
+    position: relative;
+    margin: 3rem auto;
+    max-width: 20rem;
+    padding: 10rem 0;
+    color: #fff;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 1rem rgba(0, 0, 0, .1);
+    isolation: isolate;
+}
+
+.register .form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    background: linear-gradient(to left, #fc6767,
+            #ec008c);
+    border-radius: 1rem 1rem 100% 100%;
+    z-index: -1;
+}
+
+.register .form__title {
+    position: absolute;
+    top: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+}
+
+.register .form>Form {
+    padding: 2.5rem;
+    background-color: inherit;
+}
+
+.register .form__input {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+}
+
+.register .form__input>i {
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: #fc6767;
+}
+
+.register .form__input .input {
+    position: relative;
+    width: 100%;
+    font: inherit;
+    padding: 1rem 0;
+    margin-top: .5rem;
+    border: none;
+    outline: none;
+}
+
+.register .form__input .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .1);
+    width: 100%;
+    height: 1px;
+}
+
+.register .form__input .bar::before {
+    content: "";
+    position: absolute;
+    background-color: #fc6767;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s;
+}
+
+.register .form__input>.input:focus+.bar::before {
+    transform: scaleX(1);
+}
+
+.register .form__input>.input:focus {
+    box-shadow: none;
+}
+
+.register Button {
+    display: block;
+    margin: 3rem auto;
+    padding: 3rem 5rem;
+    background: linear-gradient(to left, #fc6767,
+            #ec008c);
+    color: #fff;
+    font: inherit;
+    border: .5rem solid #fff;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5rem;
+}
+
+
+
+.register Button:hover {
+    background: linear-gradient(to right, #fc6767,
+            #ec008c);
+}
+
+.register .form__switch {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #a1a1a1;
+}
+
+.register .form__switch a {
+    text-decoration: none;
+    color: #fc6767;
+}
+
+.register .form__switch a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (min-width:500px ) and (max-width:900px) {
+    .register .form{
+        max-width: 30rem;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .register .form{
+        max-width: 35rem;
+        margin: 5rem auto;
+    }
+    .register .form::before {
+        height: 30rem;
+    }
+
+    .register .form__title {
+        left: 10rem;
+        transform: none;
+    }
+
+    .register .form>Form {
+        transform: translateX(10rem);
+        border-radius: inherit;
+        box-shadow: inherit;
+    }
+}
