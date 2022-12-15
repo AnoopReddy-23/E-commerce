@@ -32,12 +32,21 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/product">Products</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/about">About</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/contact">Contact</NavLink>
-                        </li>
+                        {
+                            userObj.isAdmin
+                                ?
+                                   <>  
+                                   </> 
+                                :
+                                    <>
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/about">About</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                                        </li>
+                                    </>
+                        }
                     </ul>
                     <div className="buttons text-center">
                         <NavLink to="/cart" className="btn btn-outline-dark m-2"><i className="fa fa-cart-shopping mr-1"></i> Cart ({quantity}) </NavLink>

@@ -36,7 +36,7 @@ router.get("/get-product/:id", async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+});
 
 router.post('/add-product',(req,res)=>{
     //console.log(req.body)

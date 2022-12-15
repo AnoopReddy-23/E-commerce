@@ -4,21 +4,15 @@ const productSchema = new mongoose.Schema({
     title: { 
         type: String, 
     },
-    desc: { 
+    description: { 
         type: String, 
     },
-    img: { 
+    image: { 
         type: String, 
         default: "https://res.cloudinary.com/anoop23/image/upload/v1665381608/SociaMediaApp/ProfilePics/human-profile-picture-black-vector-260nw-239192701_rchnar.jpg"
     },
-    categories: { 
-        type: Array 
-    },
-    size: { 
-        type: Array 
-    },
-    color: { 
-        type: Array 
+    category: { 
+        type: String 
     },
     price: { 
         type: Number 
@@ -27,6 +21,14 @@ const productSchema = new mongoose.Schema({
         type: Boolean, 
         default: true 
     },
+    rating: {
+        count: {
+            type: Number,
+        },
+        rate: {
+            type: Number,
+        }
+    }
 },
   { timestamps: true }
 )
