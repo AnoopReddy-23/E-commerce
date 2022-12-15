@@ -36,6 +36,9 @@ const Navbar = () => {
                             userObj.isAdmin
                                 ?
                                    <>  
+                                    <li className="nav-item">
+                                            <NavLink className="nav-link" to="/admin">Dashboard</NavLink>
+                                        </li>
                                    </> 
                                 :
                                     <>
@@ -52,7 +55,7 @@ const Navbar = () => {
                         <NavLink to="/cart" className="btn btn-outline-dark m-2"><i className="fa fa-cart-shopping mr-1"></i> Cart ({quantity}) </NavLink>
                         {
                             !isuserSuccess 
-                            &&
+                            && 
                             <NavLink to="/login" className="btn btn-outline-dark m-2"><i className="fa fa-sign-in-alt mr-1"></i> Login</NavLink>
                         }
                         {

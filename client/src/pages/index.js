@@ -10,3 +10,8 @@ export { default as Checkout } from './Checkout';
 export { default as PageNotFound } from './PageNotFound';
 export { default as Payment } from './Payment'
 export { default as PaymentSuccess } from './PaymentSuccess'
+export { default as Addashboard } from './Addashboard'
+export { default as AdHome} from './AdHome'
+export { default as AdAnalytics} from './AdAnalytics'
+export { default as AdUserList} from './AdUserList'
+export { default as AdProductList} from './AdProductList'

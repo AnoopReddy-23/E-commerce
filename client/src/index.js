@@ -8,7 +8,10 @@ import {store,persistor} from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 
 
-import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound, Payment, PaymentSuccess } from "./pages"
+import { Home, Product, Products, AboutPage, ContactPage, 
+  Cart, Login, Register, Checkout, PageNotFound, Payment, 
+  PaymentSuccess, Addashboard, AdHome, AdAnalytics, AdUserList, AdProductList
+} from "./pages"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,6 +30,11 @@ root.render(
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/admin" element={<Addashboard />} />
+          <Route path="/admin/" element={<AdHome />} />
+          <Route path="/admin/analytics" element={<AdAnalytics />} />
+          <Route path="/admin/users" element={<AdUserList />} />
+          <Route path="/admin/products" element={<AdProductList />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product/*" element={<PageNotFound />} />
         </Routes>
