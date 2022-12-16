@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "../styles/AdProductList.css";
 import { Table,Button } from "react-bootstrap";
 import { MdDeleteOutline } from "react-icons/md";
@@ -7,11 +7,19 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Navbar, Footer } from "../components";
 import AdSidebar from '../components/AdSidebar'
+import axios from 'axios';
 
 function AdProductList() {
 
     const [data, setData] = useState(productRows);
     //console.log(data)
+    useEffect(()=>{
+      axios.get('/get-products')
+      .then(res=>{
+        setData(res.data)
+      })
+      .catch(err=>console.log(err))
+    },[])
 
   return (
     <>
@@ -37,18 +45,18 @@ function AdProductList() {
                 {
                   data.map((item)=>{
                     return(
-                      <tr key={item.id} className="">
-                        <td>{item.id}</td>
+                      <tr key={item._id} className="">
+                        <td>{item._id}</td>
                         <td className="productListItem">
                           <img
-                            src={item.img}
+                            src={item.image}
                             alt=""
                             className="productListImg"
                           />
-                          <span>{item.name}</span>
+                          <span>{item.title}</span>
                         </td>
                         <td className="">{item.stock}</td>
-                        <td className="">{item.status}</td>
+                        <td className="">{item.category}</td>
                         <td className="">{item.price}</td>
                         <td className="">
                           <Button variant='secondary' className='userListEdit'>Edit</Button>

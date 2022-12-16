@@ -4,17 +4,13 @@ import "../styles/AdSidebar.css";
 import {
   MdOutlineLineStyle,
   MdOutlineTimeline,
-  MdOutlineTrendingUp,
   MdOutlinePermIdentity,
   MdOutlineStorefront,
   MdOutlineAttachMoney,
-  MdOutlineBarChart,
-  MdOutlineMailOutline,
-  MdOutlineDynamicFeed,
-  MdOutlineChatBubbleOutline,
-  MdOutlineWorkOutline,
-  MdOutlineReportGmailerrorred,
+ 
 } from "react-icons/md";
+import {  FcAddImage,} from 'react-icons/fc'
+
 import { Link } from "react-router-dom";
 
 function AdSidebar() {
@@ -53,11 +49,18 @@ function AdSidebar() {
               Products
             </li>
           </Link>
-          <li className="sidebarListItem">
-            <MdOutlineAttachMoney className="sidebarIcon" />
-            Transactions
-          </li>
-          
+         <Link to="/admin/orders" className="link">
+            <li className="sidebarListItem">
+              <MdOutlineAttachMoney className="sidebarIcon" />
+              Transactions
+            </li>
+         </Link>
+         <Link to="/admin/add-product" className="link">
+            <li className="sidebarListItem">
+              <FcAddImage className="sidebarIcon" />
+              Add Product
+            </li>
+         </Link>
         </ul>
       </div>
     </div>

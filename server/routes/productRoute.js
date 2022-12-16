@@ -3,6 +3,43 @@ const router=express.Router()
 const mongoose = require('mongoose');
 const ProductModel = mongoose.model("ProductModel");
 
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
+} = require("./verifyToken");
+
+
+//import cloudinary, multer, multer-storage-cloudinary
+var cloudinary=require('cloudinary').v2
+const {CloudinaryStorage}=require('multer-storage-cloudinary')
+const multer=require('multer')
+
+
+//configure cloudinary
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+    secure: true,
+})
+
+
+//configure cloudinary storage
+const cloudinaryStorage= new CloudinaryStorage({
+    cloudinary:cloudinary,
+    params: async (req,file)=>{
+        return{
+            folder:"E-BIZZ",
+            public_id:file.fieldname + "-" + Date.now(),
+        }
+    }
+})
+
+//configure multer
+var upload=multer({storage:cloudinaryStorage})
+
+
 //GET ALL PRODUCTS
 router.get("/get-products", async (req, res) => {
     const qNew = req.query.new;
@@ -28,6 +65,7 @@ router.get("/get-products", async (req, res) => {
     }
 });
 
+
 //GET PRODUCT
 router.get("/get-product/:id", async (req, res) => {
     try {
@@ -38,17 +76,16 @@ router.get("/get-product/:id", async (req, res) => {
     }
 });
 
-router.post('/add-product',(req,res)=>{
-    //console.log(req.body)
-    const { title, desc, img, categories, size, color, price, inStock } = req.body;
+
+router.post('/add-product',upload.single("image"),verifyTokenAndAdmin,(req,res)=>{
+    const { title, description, image, category, price, stock, rate, count } = JSON.parse(req.body.prodObj);
     //console.log( username, password, email, city, profileImg)
     ProductModel.findOne({ title: title })
         .then((dbProduct) => {
             if (dbProduct) {
                 return res.json({ message: "Product with title already exist." });
             }
-
-            const product = new ProductModel({ title, desc, img, categories, size, color, price, inStock });
+            const product = new ProductModel({ title, description, image:req.file.path, category, price, stock, rating:{rate,count }});
             product.save()
                 .then((u) => {
                     //console.log(u)

@@ -16,7 +16,7 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const handleClick = (product) => {
-    //console.log(product)
+    //console.log(productp)
     dispatch(addProduct({product}));
   };
 

@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(require('./routes/auth'))
 app.use(require('./routes/productRoute'))
 app.use(require('./routes/orderRoute'))
+app.use(require('./routes/userRoute'))
 
 app.listen(PORT,()=>{
     console.log(`Server running on ${PORT}`)

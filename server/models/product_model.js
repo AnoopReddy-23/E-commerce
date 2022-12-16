@@ -17,9 +17,8 @@ const productSchema = new mongoose.Schema({
     price: { 
         type: Number 
     },
-    inStock: { 
-        type: Boolean, 
-        default: true 
+    stock: { 
+        type: Number, 
     },
     rating: {
         count: {

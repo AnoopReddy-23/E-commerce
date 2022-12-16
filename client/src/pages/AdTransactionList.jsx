@@ -1,32 +1,32 @@
-import React from 'react'
-import "../styles/AdUserList.css";
+import React,{useEffect} from 'react'
+import "../styles/AdProductList.css";
 import { Table,Button } from "react-bootstrap";
 import { MdDeleteOutline } from "react-icons/md";
-import { userRows } from "../dummydata";
+import { productRows } from "../dummydata";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Navbar, Footer } from "../components";
 import AdSidebar from '../components/AdSidebar'
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
+function AdTransactionList() {
 
-function AdUserList() {
-  const [data, setData] = useState(userRows);
-  const {userObj}=useSelector(state=>state.user)
-  //console.log(data)
-  useEffect(()=>{
-        axios.get('/get-users',{
+    const [data, setData] = useState([]);
+    const {userObj}=useSelector(state=>state.user)
+    useEffect(()=>{
+        axios.get('/get-orders',{
           headers: {
             token: "Bearer "+userObj.token
           }
         })
         .then(res=>{
           setData(res.data)
+          //console.log(data)
         })
         .catch(err=>console.log(err))
   },[])
+
 
   return (
     <>
@@ -35,14 +35,16 @@ function AdUserList() {
         <div className="col-3">
             <AdSidebar />
         </div>
-        <div className="col-8 mx-auto mt-3">
+        <div className="col-8 mt-3 mx-auto">
           <div className="userList m-3">
             <Table responsive="md">
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>User</th>
-                  <th>Email</th>
+                  <th>CustomerId</th>
+                  <th>PaymentId</th>
+                  <th>Payment Status</th>
+                  <th>Amount</th>
+                  <th>Order Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -51,19 +53,13 @@ function AdUserList() {
                   data.map((item)=>{
                     return(
                       <tr key={item._id} className="">
-                        <td>{item._id}</td>
-                        <td className="userListUser">
-                          <img
-                            src={item.profileImg}
-                            alt=""
-                            className="userListImg"
-                          />
-                          <span className="">{item.username}</span>
-                        </td>
-                        <td className="">{item.email}</td>
+                        <td>{item.userId}</td>
+                        <td className="">{item.paymentId}</td>
+                        <td className="">{item.paymentStatus}</td>
+                        <td className="">{item.amount}</td>
+                        <td className="">{item.status}</td>
                         <td className="">
-                          <Button variant='secondary' className='userListEdit'>Edit</Button>
-                          <Button variant='light' className='userListDelete'><MdDeleteOutline /></Button>
+                          <Button variant='secondary' className='userListEdit'>View</Button>
                         </td>
                       </tr>
                     )
@@ -79,4 +75,4 @@ function AdUserList() {
   )
 }
 
-export default AdUserList
+export default AdTransactionList

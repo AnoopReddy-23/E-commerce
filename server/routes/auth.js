@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
     const userFound =await UserModel.findOne({ email: email })
     if(userFound && (await userFound.isPasswordMatched(password))){
         // create and send a token
-        const jwtToken = jwt.sign({ _id: userFound._id }, JWT_SECRET);
+        const jwtToken = jwt.sign({ _id: userFound._id,isAdmin: userFound.isAdmin, }, JWT_SECRET, {expiresIn:"3d"});
         const { _id, username, email, profileImg, isAdmin } = userFound;
         res.json({ message:"Login successful", userInfo: { _id, username, email, profileImg, isAdmin, token: jwtToken}});
     } 

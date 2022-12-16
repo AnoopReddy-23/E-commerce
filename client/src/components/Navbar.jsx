@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { clearLoginStatus } from '../redux/reducer/userSlice'
 import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 const Navbar = () => {
     const {quantity}=useSelector(state => state.cart)
@@ -12,9 +13,10 @@ const Navbar = () => {
     const navigate=useNavigate()
 
     const logout=()=>{
-        dispatch(clearLoginStatus())
         //navigate('/login')
+        dispatch(clearLoginStatus())
     }
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
